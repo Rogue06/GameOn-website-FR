@@ -24,7 +24,17 @@ function launchModal() {
 // Variables
 const lettersRegex = /^[A-Za-z]+$/;
 
-// Functions
+// Function pour fermer la fenêtre modale
+function closeModal() {
+  modalbg.style.display = "none";
+}
+// Récupérer l'élément avec la classe ".close"
+const closeModalBtn = document.querySelector(".close");
+
+// Ajouter un écouteur de clic à l'élément ".close" Si click alors on execute la fonction !
+closeModalBtn.addEventListener("click", closeModal);
+
+// Functions pour les conditions
 function validate() {
   let textInputs = document.querySelectorAll('.formData input[type="text"]'); // Variable contenant tous les éléments <input> de type "texte"
   let emailInput = document.querySelector(".formData input[type='email']"); // Variable contenant tous les éléments <input> de type "email"
