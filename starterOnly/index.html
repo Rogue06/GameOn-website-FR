@@ -62,18 +62,17 @@
               method="get"
               onsubmit="return validate();"
             >
-              <div class="formData">
-                <label>Prénom</label>
+              <div class="formData" data-error="Veuillez renseigner ce champ avec des lettres uniquement.">
+                <label for="first">Prénom</label><!-- Ajout de l'attribut "for" -->
                 <input
                   class="text-control"
                   type="text"
                   id="first"
                   name="first"
-                  
                 />
               </div>
-              <div class="formData">
-                <label>Nom</label><br>
+              <div class="formData" data-error="Veuillez renseigner ce champ avec des lettres uniquement.">
+                <label for="last">Nom</label><!-- Ajout de l'attribut "for" -->
                 <input
                   class="text-control"
                   type="text"
@@ -81,8 +80,8 @@
                   name="last"
                 />
               </div>
-              <div class="formData">
-                <label>E-mail</label><br>
+              <div class="formData" data-error="Veuillez saisir une adresse e-mail valide.">
+                <label for="email">E-mail</label><!-- Ajout de l'attribut "for" -->
                 <input
                   class="text-control"
                   type="email"
@@ -90,8 +89,8 @@
                   name="email"
                 />
               </div>
-              <div class="formData">
-                <label>Date de naissance</label><br>
+              <div class="formData" data-error="Vous devez avoir au moins 18 ans pour vous inscrire.">
+                <label for="birthdate">Date de naissance</label><!-- Ajout de l'attribut "for" -->
                 <input
                   class="text-control"
                   type="date"
@@ -99,12 +98,12 @@
                   name="birthdate"
                 />
               </div>
-              <div class="formData">
-                <label>À combien de tournois GameOn avez-vous déjà participé ?</label><br>
+              <div class="formData" data-error="Veuillez renseigner ce champ en indiquant le nombre de tournois dont vous avez participé.">
+                <label for="quantity">À combien de tournois GameOn avez-vous déjà participé ?</label><!-- Ajout de l'attribut "for" -->
                 <input type="number" class="text-control" id="quantity" name="quantity" min="0" max="99">
               </div>
               <p class="text-label">A quel tournoi souhaitez-vous participer cette année ?</p>
-              <div class="formData">
+              <div class="formData" data-error="Veuillez indiquer un lieu">
                 <input
                   class="checkbox-input"
                   type="radio"
@@ -173,14 +172,14 @@
               </div>
 
               <div
-                class="formData">
-                <input
+                class="formData" data error="Veuillez accepter les conditions d'utilisation.">
+                <input required
                   class="checkbox-input"
                   type="checkbox"
                   id="checkbox1"
                   checked
                 />
-                <label class="checkbox2-label" for="checkbox1" required>
+                <label class="checkbox2-label" for="checkbox1" >
                   <span class="checkbox-icon"></span>
                   J'ai lu et accepté les conditions d'utilisation.
                 </label>
