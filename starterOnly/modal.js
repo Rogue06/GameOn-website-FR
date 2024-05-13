@@ -59,8 +59,9 @@ window.addEventListener("load", hideErrorMessages);*/
 // Fonction pour valider le formulaire quand l'utilisateur clique sur  "Submit"
 function validateForm(event) {
   event.preventDefault(); // Empêcher la soumission par defaut du modal
-  // Effectuer les validations
-  /* const isFormValid =
+  const form = event.target.closest("form"); // Récupérer l'élément du formulaire le plus proche
+  // Soumettre le formulaire si toutes les validations sont réussies
+  const isFormValid =
     validateName() &&
     validateEmail() &&
     validateDate() &&
@@ -75,11 +76,12 @@ function validateForm(event) {
   }
 
   // Soumettre le formulaire si toutes les validations sont réussies
-  if (isFormValid) {
-    event.target.submit(); // Soumettre le formulaire
+  if (isFormValid === true) {
+    form.submit(); // Soumettre le formulaire
     console.log(isFormValid);
-  } */
+  }
 }
+submitModal.addEventListener("click", validateForm); // Ajouter un evenement (écouteur)au bouton "C'est parti"
 function validateName() {
   let isNameValid = true; // Variable pour suivre si la validation du nom réussit ou échoue
 
@@ -222,17 +224,3 @@ textInputFields.forEach((inputField) => {
     displayErrorIfNeeded(inputField);
   });
 });
-
-// Soumettre le formulaire si toutes les validations sont réussies
-if (
-  validateName() &&
-  validateEmail() &&
-  validateDate() &&
-  validateNumbers() &&
-  validateRadio() &&
-  validateCheckbox()
-) {
-  event.target.submit(); // Soumettre le formulaire
-}
-
-submitModal.addEventListener("click", validateForm);
