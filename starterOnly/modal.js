@@ -132,6 +132,7 @@ function validateEmail() {
   }
   // console.log("la validation de l'email retourne :", true);
 }
+
 // Fonction pour la date de naissance
 function validateDate() {
   // Récupérer la date de naissance dans l'input type "date"
@@ -151,11 +152,15 @@ function validateDate() {
   if (userBirthDate <= currentDate) {
     console.log("la validation de la date de naissance retourne :", true);
     // L'utilisateur a 18 ans ou plus
-    return true;
+    const formDataElement = dateInput.closest(".formData");
+    formDataElement.setAttribute("data-error-visible", "false");
+    //return true;
   } else {
     console.log("la validation de la date de naissance retourne :", false);
     // L'utilisateur a moins de 18 ans
-    return false;
+    const formDataElement = dateInput.closest(".formData");
+    formDataElement.setAttribute("data-error-visible", "true");
+    //return false;
   }
 }
 
