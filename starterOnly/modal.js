@@ -20,6 +20,8 @@ const submitModal = document.querySelector(".btn-submit");
 const textInput = document.querySelectorAll(".formData input[type='text']");
 // Récuperer la valeur des inputs type "email"
 const emailInput = document.querySelector(".formData input[type='email']");
+// Récuperer la valeur des inputs type "date"
+const dateInput = document.querySelector(".formData input[type='date']");
 // Récupérez tous les champs de saisie
 let allInputFields = document.querySelectorAll(".formData input");
 
@@ -136,7 +138,6 @@ function validateEmail() {
 // Fonction pour la date de naissance
 function validateDate() {
   // Récupérer la date de naissance dans l'input type "date"
-  const dateInput = document.querySelector(".formData input[type='date']");
   let inputDateValue = dateInput.value;
 
   // Créer une instance de Date pour la date de naissance de l'utilisateur
@@ -172,10 +173,15 @@ function validateNumbers() {
 
   if (inputNumberValue.value <= 0) {
     console.log("la validation du nombre de tournois retourne :", false);
-    return false;
+    const formDataElement = inputNumberValue.closest(".formData");
+    formDataElement.setAttribute("data-error-visible", "true");
+    //return false;
+  } else {
+    console.log("la validation du nombre de tournois retourne :", true);
+    const formDataElement = inputNumberValue.closest(".formData");
+    formDataElement.setAttribute("data-error-visible", "false");
+    //return true;
   }
-  console.log("la validation du nombre de tournois retourne :", true);
-  return true;
 }
 
 // Vérifier si le input de type "radio" n'est pas vide
