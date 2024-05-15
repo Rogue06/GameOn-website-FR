@@ -191,10 +191,14 @@ function validateRadio() {
   );
   if (inputRadioValue === null) {
     console.log("la validation du lieu de participation retourne :", false);
-    return false;
+    const formDataElement = inputRadioValue.closest(".formData");
+    formDataElement.setAttribute("data-error-visible", "true");
+    //return false;
   }
   console.log("la validation du lieu de participation retourne :", true);
-  return true;
+  const formDataElement = inputRadioValue.closest(".formData");
+  formDataElement.setAttribute("data-error-visible", "false");
+  //return true;
 }
 
 function validateCheckbox() {
