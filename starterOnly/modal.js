@@ -99,12 +99,21 @@ function validateName() {
         !lettersRegex.test(inputTextValue)
       ) {
         isNameValid = false; // La validation du nom a échoué
+
+        // mettre à jour l'attribut data-error-visible pour le champs correspondant
+        const formDataElement = textInput[i].closest(".formData");
+        formDataElement.setAttribute("data-error-visible", "true");
+      } else {
+        // Si le champ est valide, on met à jour l'attribut data-error-visible à false
+        const formDataElement = textInput[i].closest(".formData");
+        formDataElement.setAttribute("data-error-visible", "false");
       }
     }
   }
   console.log("La validation du nom retourne :", isNameValid);
   return isNameValid; // Retourne l'état de la validation du nom
 }
+
 // Fonction pour tester l'email
 function validateEmail() {
   let inputEmailValue = emailInput.value.trim(); // Permet de voir si le champs est vide
