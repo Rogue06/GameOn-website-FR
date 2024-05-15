@@ -85,9 +85,10 @@ submitModal.addEventListener("click", validateForm); // Ajouter un evenement (é
 function validateName() {
   let isNameValid = true; // Variable pour suivre si la validation du nom réussit ou échoue
 
+  // Boucle qui parcours chaque champ de texte présent dans la variable "textInput"
   for (let i = 0; i < textInput.length; i++) {
-    let inputTextValue = textInput[i].value.trim();
-    let inputID = textInput[i].id;
+    let inputTextValue = textInput[i].value.trim(); // Récupère la valeur du champ de texte
+    let inputID = textInput[i].id; // Récupère l'ID du champ de texte
 
     // Vérifie si l'ID correspond aux champs Prénom et Nom
     if (inputID === "first" || inputID === "last") {
@@ -100,7 +101,7 @@ function validateName() {
       ) {
         isNameValid = false; // La validation du nom a échoué
 
-        // mettre à jour l'attribut data-error-visible pour le champs correspondant
+        // Mise à jour de l'attribut data-error-visible pour le champs correspondant
         const formDataElement = textInput[i].closest(".formData");
         formDataElement.setAttribute("data-error-visible", "true");
       } else {
@@ -110,27 +111,26 @@ function validateName() {
       }
     }
   }
-  console.log("La validation du nom retourne :", isNameValid);
+  //console.log("La validation du nom retourne :", isNameValid);
   return isNameValid; // Retourne l'état de la validation du nom
 }
 
 // Fonction pour tester l'email
 function validateEmail() {
+  let = isEmailValid = true;
   let inputEmailValue = emailInput.value.trim(); // Permet de voir si le champs est vide
-  if (inputEmailValue === "") {
-    /* emailInput.setAttribute("data-error-visible", "true");
-    emailInput.setAttribute(
-      "data-error",
-      "Veuillez entrer une adresse e-mail valide."
-    ); */
-    console.log("le champs email est vide retourne :", false);
-    return false;
-  } else if (!emailRegex.test(inputEmailValue)) {
-    console.log("la validation de l'email retourne :", false);
-    return false;
+  if (inputEmailValue === "" || !emailRegex.test(inputEmailValue)) {
+    // Permet de voir si l'email est valide (champ pas vide et email valide via regex)
+    isEmailValid = false; // initialisation de la variable
+    const formDataElement = emailInput.closest(".formData");
+    formDataElement.setAttribute("data-error-visible", "true"); // Met à jour l'attribut data-error-visible à true si retour false.
+    //console.log("le champs email est vide retourne :", false);
+  } else {
+    //console.log("la validation de l'email retourne :", false);
+    const formDataElement = emailInput.closest(".formData"); // Permet de trouver le formulaire
+    formDataElement.setAttribute("data-error-visible", "false"); // Met à jour l'attribut data-error-visible à false si retour true.
   }
-  console.log("la validation de l'email retourne :", true);
-  return true;
+  // console.log("la validation de l'email retourne :", true);
 }
 // Fonction pour la date de naissance
 function validateDate() {
