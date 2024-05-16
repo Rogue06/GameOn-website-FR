@@ -12,20 +12,14 @@ function editNav() {
 const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
-// Récupérer l'élément avec la classe ".close"
 const closeModalBtn = document.querySelector(".close");
 // récupérer class du bouton "C'est parti"
 const submitModal = document.querySelector(".btn-submit");
-// Récuperer la valeur des inputs type "texte"
 const textInput = document.querySelectorAll(".formData input[type='text']");
-// Récuperer la valeur des inputs type "email"
 const emailInput = document.querySelector(".formData input[type='email']");
-// Récuperer la valeur des inputs type "date"
 const dateInput = document.querySelector(".formData input[type='date']");
-// Récupérez tous les champs de saisie
-let allInputFields = document.querySelectorAll(".formData input");
 
-// Others Variables
+let allInputFields = document.querySelectorAll(".formData input");
 const lettersRegex = /^[A-Za-z]+$/;
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -37,7 +31,7 @@ function launchModal() {
   modalbg.style.display = "block";
 }
 
-// Function pour fermer la fenêtre modale
+// Function for close modal
 function closeModal() {
   modalbg.style.display = "none";
 }
@@ -87,7 +81,6 @@ submitModal.addEventListener("click", validateForm); // Ajouter un evenement (é
 function validateName() {
   let isNameValid = true; // Variable pour suivre si la validation du nom réussit ou échoue
 
-  // Boucle qui parcours chaque champ de texte présent dans la variable "textInput"
   for (let i = 0; i < textInput.length; i++) {
     let inputTextValue = textInput[i].value.trim(); // Récupère la valeur du champ de texte
     let inputID = textInput[i].id; // Récupère l'ID du champ de texte
@@ -95,15 +88,14 @@ function validateName() {
     // Vérifie si l'ID correspond aux champs Prénom et Nom
     if (inputID === "first" || inputID === "last") {
       //console.log("validation du champ " + inputID);
-      // Vérifie les conditions de validation
+
       if (
         inputTextValue === "" ||
         inputTextValue.length < 2 ||
         !lettersRegex.test(inputTextValue)
       ) {
-        isNameValid = false; // La validation du nom a échoué
+        isNameValid = false;
 
-        // Mise à jour de l'attribut data-error-visible pour le champs correspondant
         const formDataElement = textInput[i].closest(".formData");
         formDataElement.setAttribute("data-error-visible", "true");
       } else {
@@ -135,9 +127,9 @@ function validateEmail() {
   // console.log("la validation de l'email retourne :", true);
 }
 
-// Fonction pour la date de naissance
+// Fonction vérifier si l'utilisateur entre une date et a 18 ans ou plus
 function validateDate() {
-  // Récupérer la date de naissance dans l'input type "date"
+  // Récupérer la date de naissance
   let inputDateValue = dateInput.value;
 
   // Créer une instance de Date pour la date de naissance de l'utilisateur
@@ -165,7 +157,7 @@ function validateDate() {
   }
 }
 
-// Vérifier si le input de type "number" n'est pas vide
+// Fonction qui vérifie si le nombre de tournois est > 0
 function validateNumbers() {
   const inputNumberValue = document.querySelector(
     ".formData input[type='number']"
@@ -189,16 +181,19 @@ function validateRadio() {
   const inputRadioValue = document.querySelector(
     ".formData input[type='radio']:checked"
   );
+  const radioFormDataElement = document
+    .querySelector(".formData input[type='radio']")
+    .closest(".formData");
+
   if (inputRadioValue === null) {
     console.log("la validation du lieu de participation retourne :", false);
-    const formDataElement = inputRadioValue.closest(".formData");
-    formDataElement.setAttribute("data-error-visible", "true");
+    radioFormDataElement.setAttribute("data-error-visible", "true");
     //return false;
+  } else {
+    radioFormDataElement.setAttribute("data-error-visible", "false");
+    console.log("la validation du lieu de participation retourne :", true);
+    //return true;
   }
-  console.log("la validation du lieu de participation retourne :", true);
-  const formDataElement = inputRadioValue.closest(".formData");
-  formDataElement.setAttribute("data-error-visible", "false");
-  //return true;
 }
 
 function validateCheckbox() {
@@ -211,9 +206,8 @@ function validateCheckbox() {
   return true;
 }
 
-// Fonction pour afficher le message d'erreur spécifique à chaque champ
+// Fonction qui vérifie la validité du formulaire de chaque champ.
 function displayErrorIfNeeded() {
-  // Vérifier chaque validation du formulaire
   const validations = [
     validateName(),
     validateEmail(),
@@ -222,7 +216,6 @@ function displayErrorIfNeeded() {
     validateRadio(),
     validateCheckbox(),
   ];
-
   // Parcourir les résultats des validations
   validations.forEach((isValid, index) => {
     if (!isValid) {
