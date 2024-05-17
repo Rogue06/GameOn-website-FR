@@ -186,24 +186,28 @@ function validateRadio() {
     .closest(".formData");
 
   if (inputRadioValue === null) {
-    console.log("la validation du lieu de participation retourne :", false);
+    //console.log("la validation du lieu de participation retourne :", false);
     radioFormDataElement.setAttribute("data-error-visible", "true");
     //return false;
   } else {
     radioFormDataElement.setAttribute("data-error-visible", "false");
-    console.log("la validation du lieu de participation retourne :", true);
+    //console.log("la validation du lieu de participation retourne :", true);
     //return true;
   }
 }
 
 function validateCheckbox() {
-  const checkbox1 = document.getElementById("checkbox1");
-  if (!checkbox1.checked) {
-    console.log("Les conditions d'utilisations n'ont pas été cochés.", false);
-    return false;
+  const checkbox1Input = document.getElementById("checkbox1");
+  if (!checkbox1Input.checked) {
+    const checkbox1FormData = checkbox1Input.closest(".formData");
+    checkbox1FormData.setAttribute("data-error-visible", "true");
+    console.log("la checkbox lu et approuvé retourne :", false);
+  } else {
+    checkbox1Input
+      .closest(".formData")
+      .setAttribute("data-error-visible", "false");
+    console.log("la checkbox lu et approuvé retourne :", true);
   }
-  console.log("Les conditions d'utilisations ont été cochés.", true);
-  return true;
 }
 
 // Fonction qui vérifie la validité du formulaire de chaque champ.
