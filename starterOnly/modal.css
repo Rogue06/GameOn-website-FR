@@ -347,6 +347,11 @@ input[data-error]::after {
 .btn-close-modal {
     display: none;
 }
+.form-sent-notification {
+    display: none;
+    align-items: center;
+    justify-content: center;
+  }
 /* custom select styles */
 .custom-select {
   position: relative;

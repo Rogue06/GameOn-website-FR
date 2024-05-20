@@ -14,6 +14,7 @@ const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
 const closeModalCross = document.querySelector(".close");
 const closeModalBtn = document.querySelector(".btn-close-modal");
+const formSentNotification = document.querySelector(".form-sent-notification");
 // récupérer class du bouton "C'est parti"
 const submitModal = document.querySelector(".btn-submit");
 const textInput = document.querySelectorAll(".formData input[type='text']");
@@ -62,10 +63,14 @@ function validateForm(event) {
 
   if (isFormValid === true) {
     const fieldContainer = document.querySelector(".field__container");
+    const fieldContainerHeight = fieldContainer.offsetHeight;
     fieldContainer.setAttribute("hide-modal", "true");
     submitModal.style.display = "none";
     closeModalBtn.style.display = "block";
-    //submitModal.setAttribute("value", "Fermer");
+    // Récupération de la hauteur occupée par le formulaire avant de le cacher.
+    // Affichage du message de participation validée + bouton pour fermer la modale.
+    formSentNotification.style.display = "flex";
+    formSentNotification.style.height = fieldContainerHeight + "px";
   } else {
     displayErrorIfNeeded();
     return;
