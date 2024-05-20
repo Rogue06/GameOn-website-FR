@@ -69,10 +69,10 @@ img {
 }
 
 /* hide all fileds for confirmation message */
-.field__container {
+.field__container[hide-modal="true"] {
 
   display: none;
-  margin: 40px;
+  
   
 }
 
