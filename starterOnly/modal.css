@@ -72,8 +72,6 @@ img {
 .field__container[hide-modal="true"] {
 
   display: none;
-  
-  
 }
 
 @media screen and (max-width: 768px) {
@@ -334,7 +332,7 @@ input[data-error]::after {
   transform: rotate(-45deg);
 }
 .btn-submit,
-.btn-signup {
+.btn-signup, .btn-close-modal {
   background: #fe142f;
   display: block;
   margin: 0 auto;
@@ -344,6 +342,10 @@ input[data-error]::after {
   color: #fff;
   cursor: pointer;
   border: 0;
+}
+
+.btn-close-modal {
+    display: none;
 }
 /* custom select styles */
 .custom-select {

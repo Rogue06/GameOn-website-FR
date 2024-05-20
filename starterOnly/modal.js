@@ -12,7 +12,8 @@ function editNav() {
 const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
-const closeModalBtn = document.querySelector(".close");
+const closeModalCross = document.querySelector(".close");
+const closeModalBtn = document.querySelector(".btn-close-modal");
 // récupérer class du bouton "C'est parti"
 const submitModal = document.querySelector(".btn-submit");
 const textInput = document.querySelectorAll(".formData input[type='text']");
@@ -36,7 +37,7 @@ function closeModal() {
   modalbg.style.display = "none";
 }
 // Ajouter un écouteur de clic à l'élément ".close" Si click alors on execute la fonction !
-closeModalBtn.addEventListener("click", closeModal);
+closeModalCross.addEventListener("click", closeModal);
 
 // Fonction pour valider le formulaire quand l'utilisateur clique sur  "Submit"
 function validateForm(event) {
@@ -62,7 +63,9 @@ function validateForm(event) {
   if (isFormValid === true) {
     const fieldContainer = document.querySelector(".field__container");
     fieldContainer.setAttribute("hide-modal", "true");
-    submitModal.setAttribute("value", "Fermer");
+    submitModal.style.display = "none";
+    closeModalBtn.style.display = "block";
+    //submitModal.setAttribute("value", "Fermer");
   } else {
     displayErrorIfNeeded();
     return;
