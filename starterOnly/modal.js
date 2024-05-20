@@ -38,20 +38,6 @@ function closeModal() {
 // Ajouter un écouteur de clic à l'élément ".close" Si click alors on execute la fonction !
 closeModalBtn.addEventListener("click", closeModal);
 
-// Fonction pour cacher les messages d'erreurs des champs
-/* function hideErrorMessages() {
-  // Sélectionne tous les éléments du formulaire avec l'attribut data-error-visible
-  let errorElements = document.querySelectorAll('[data-error-visible="true"]');
-
-  // Parcourt tous les éléments du formulaire selectionnés
-  errorElements.forEach(function (element) {
-    // Supprime l'attribut data-error-visible
-    element.removeAttribute("data-error-visible");
-  });
-} 
-// Appelle la fonction au chargement de la page
-window.addEventListener("load", hideErrorMessages);*/
-
 // Fonction pour valider le formulaire quand l'utilisateur clique sur  "Submit"
 function validateForm(event) {
   event.preventDefault(); // Empêcher la soumission par defaut du modal
@@ -65,16 +51,21 @@ function validateForm(event) {
     validateRadio() &&
     validateCheckbox();
 
-  // Afficher les messages d'erreur si nécessaire
-  if (!isFormValid) {
-    displayErrorIfNeeded();
-    return; // Arrêter le traitement si le formulaire n'est pas valide
-  }
+  console.log("name", validateName());
+  console.log("email", validateEmail());
+  console.log("date", validateDate());
+  console.log("numbers", validateNumbers());
+  console.log("radio", validateRadio());
+  console.log("checkbox", validateCheckbox());
+  console.log("isFormValid", isFormValid);
 
-  // Soumettre le formulaire si toutes les validations sont réussies
   if (isFormValid === true) {
-    form.submit(); // Soumettre le formulaire
-    console.log(isFormValid);
+    const fieldContainer = document.querySelector(".field__container");
+    fieldContainer.setAttribute("hide-modal", "true");
+    submitModal.setAttribute("value", "Fermer");
+  } else {
+    displayErrorIfNeeded();
+    return;
   }
 }
 submitModal.addEventListener("click", validateForm); // Ajouter un evenement (écouteur)au bouton "C'est parti"
@@ -119,11 +110,14 @@ function validateEmail() {
     const formDataElement = emailInput.closest(".formData");
     formDataElement.setAttribute("data-error-visible", "true"); // Met à jour l'attribut data-error-visible à true si retour false.
     //console.log("le champs email est vide retourne :", false);
+    return false;
   } else {
-    //console.log("la validation de l'email retourne :", false);
+    //console.log("la validation de l'email retourne :", true);
     const formDataElement = emailInput.closest(".formData"); // Permet de trouver le formulaire
     formDataElement.setAttribute("data-error-visible", "false"); // Met à jour l'attribut data-error-visible à false si retour true.
+    return true;
   }
+
   // console.log("la validation de l'email retourne :", true);
 }
 
@@ -143,17 +137,17 @@ function validateDate() {
 
   // Comparer la date de naissance de l'utilisateur avec la date actuelle
   if (userBirthDate <= currentDate) {
-    console.log("la validation de la date de naissance retourne :", true);
+    //console.log("la validation de la date de naissance retourne :", true);
     // L'utilisateur a 18 ans ou plus
     const formDataElement = dateInput.closest(".formData");
     formDataElement.setAttribute("data-error-visible", "false");
-    //return true;
+    return true;
   } else {
-    console.log("la validation de la date de naissance retourne :", false);
+    //console.log("la validation de la date de naissance retourne :", false);
     // L'utilisateur a moins de 18 ans
     const formDataElement = dateInput.closest(".formData");
     formDataElement.setAttribute("data-error-visible", "true");
-    //return false;
+    return false;
   }
 }
 
@@ -164,15 +158,15 @@ function validateNumbers() {
   );
 
   if (inputNumberValue.value <= 0) {
-    console.log("la validation du nombre de tournois retourne :", false);
+    //console.log("la validation du nombre de tournois retourne :", false);
     const formDataElement = inputNumberValue.closest(".formData");
     formDataElement.setAttribute("data-error-visible", "true");
-    //return false;
+    return false;
   } else {
-    console.log("la validation du nombre de tournois retourne :", true);
+    //console.log("la validation du nombre de tournois retourne :", true);
     const formDataElement = inputNumberValue.closest(".formData");
     formDataElement.setAttribute("data-error-visible", "false");
-    //return true;
+    return true;
   }
 }
 
@@ -188,11 +182,11 @@ function validateRadio() {
   if (inputRadioValue === null) {
     //console.log("la validation du lieu de participation retourne :", false);
     radioFormDataElement.setAttribute("data-error-visible", "true");
-    //return false;
+    return false;
   } else {
     radioFormDataElement.setAttribute("data-error-visible", "false");
     //console.log("la validation du lieu de participation retourne :", true);
-    //return true;
+    return true;
   }
 }
 
@@ -201,12 +195,14 @@ function validateCheckbox() {
   if (!checkbox1Input.checked) {
     const checkbox1FormData = checkbox1Input.closest(".formData");
     checkbox1FormData.setAttribute("data-error-visible", "true");
-    console.log("la checkbox lu et approuvé retourne :", false);
+    //console.log("la checkbox lu et approuvé retourne :", false);
+    return false;
   } else {
     checkbox1Input
       .closest(".formData")
       .setAttribute("data-error-visible", "false");
-    console.log("la checkbox lu et approuvé retourne :", true);
+    //console.log("la checkbox lu et approuvé retourne :", true);
+    return true;
   }
 }
 

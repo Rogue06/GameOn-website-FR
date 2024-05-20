@@ -68,6 +68,14 @@ img {
   display: none;
 }
 
+/* hide all fileds for confirmation message */
+.field__container {
+
+  display: none;
+  margin: 40px;
+  
+}
+
 @media screen and (max-width: 768px) {
   .topnav a {display: none;}
   .topnav a.icon {
