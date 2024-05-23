@@ -28,6 +28,7 @@ p {
 
 img {
   padding-right: 1rem;
+  object-fit: cover;
 }
 
 .topnav {
@@ -69,20 +70,10 @@ img {
 }
 
 /* hide all fileds for confirmation message */
-.field__container[hide-modal="true"] {
+.field__container[data-hide-modal="true"] {
 
   display: none;
 }
-
-.hero-headline>ul {
-    display:inline-block;
-    list-style-type: none;
-}
-
-
-
-
-
 @media screen and (max-width: 1124px) {
     .topnav a {display: none;}
     .topnav a.icon {
@@ -121,7 +112,6 @@ main {
 
 .hero-headline>h1 {
 padding: 0;
-
 }
 
 .hero-text>p {
@@ -419,7 +409,7 @@ input {
   font-size: 17px;
 }
 .hero-section {
-  min-height: 93vh;
+  min-height: 70vh;
   border-radius: 10px;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
@@ -523,95 +513,93 @@ footer {
         color: #FE142F;
         font-size: 25px;
         position: absolute;
-        top: 30px;
+        top: 17px;
     }
-  .hero-section {
-    display: block;
-    box-shadow: unset;
-  }
-  .hero-content {
-    display: flex; 
-    flex-direction: column; 
-    background:transparent;
-    color: #000;
-    padding: 0;
-  }
-  .hero-content::after {
-    content: unset;
-  }
-  .hero-content .btn-signup {
-    display: none;
-  }
-  .hero-headline {
-    font-size: 4rem;
-    white-space: normal;
-  }
-  .hero-text {
-    margin: 20px 0;
-    width: unset;
-    font-size: 1.4rem; 
-  }
-  .hero-img img {
-    border-radius: 10px;
-    margin-top: 40px;
-  }
-  .hero-section > .btn-signup {
-    display: block;
-    margin: 32px auto 10px;
-    padding: 12px 35px;
-  }
-  .copyrights {
-    margin-top: 50px;
-    text-align: center;
-  }
-  .form-sent-notification{
-        position: relative;
-       bottom: 50px; 
+    .hero-section {
+        display: block;
+        box-shadow: unset;
     }
-    .btn-close-modal {
+    .hero-content {
+        display: flex; 
+        flex-direction: column; 
+        background:transparent;
+        color: #000;
+        padding: 0;
+    }
+    .hero-content::after {
+        content: unset;
+    }
+    .hero-content .btn-signup {
+        display: none;
+    }
+    .hero-headline {
+        font-size: 4rem;
+        white-space: normal;
+    }
+    .hero-text {
+        margin: 20px 0;
+        width: unset;
+        font-size: 1.4rem; 
+    }
+    .hero-img img {
+        border-radius: 10px;
+        margin-top: 40px;
+    }
+    .hero-section > .btn-signup {
+        display: block;
+        margin: 32px auto 10px;
+        padding: 12px 35px;
+    }
+    .copyrights {
+        margin-top: 50px;
+        text-align: center;
+    }
+    .form-sent-notification{
         position: relative;
-        bottom: 100px; 
+        bottom: 50px; 
+        }
+        .btn-close-modal {
+            position: relative;
+            bottom: 100px; 
+        }
+        .topnav.responsive a.icon {
+            color: Black;
+        }
+}
+
+@media screen and (max-width: 630px) {
+    body {
+            padding : 0 40px;
+        }
+    main {
+        padding: 0;
+        margin: 0;
+    }
+    .topnav img {
+        width: 60%;
     }
     .topnav.responsive a.icon {
         color: Black;
     }
-}
-
-@media screen and (max-width: 630px) {
-body {
-        padding : 0 40px;
+    .hero-content{
+        min-width: 300px;
+        padding: 0;
     }
-main {
+    .hero-headline, h1 {
     padding: 0;
-    margin: 0;
-  }
-  .topnav img {
-    width: 60%;
+    font-size: 3.5rem;
+    }
+    .hero-text {
+        padding : 0;
+    font-size: 1.2rem;
+    }
+    .formData[data-error]::after {
+    font-size: 11.5px;
+    }
+    .hero-img img {
+    border-radius: 30px;
+    }
 }
-.topnav.responsive a.icon {
-    color: Black;
-}
-  .hero-content{
-    min-width: 300px;
-    padding: 0;
- }
-.hero-headline, h1 {
-padding: 0;
- font-size: 3.5rem;
-}
-.hero-text {
-    padding : 0;
- font-size: 1.2rem;
-}
-.formData[data-error]::after {
-font-size: 11.5px;
-}
-.hero-img img {
-border-radius: 30px;
-}
-
-}
-  
 @media screen and (max-width: 569px) {
     .topnav {
         margin: 30px 0 20px 0;
@@ -626,7 +614,7 @@ border-radius: 30px;
         color: #FE142F;
         font-size: 25px;
       }
-      .topnav img {
+    .topnav img {
         width: 60%;
         margin-top: 3px;
     }
@@ -642,25 +630,28 @@ border-radius: 30px;
         height: 100%;
         border-radius: 10px;
     }
-footer {
-    margin: 0;
-}
-.form-sent-notification{
-    position: relative;
-   bottom: 150px; 
-   font-size: 20px;
-}
-.btn-close-modal {
-    position: relative;
-    bottom: 250px; 
-}
-label {
-   margin: 0; 
-   font-size: 16px;
-}
-.topnav.responsive a.icon {
-    color: Black;
-}
+    footer {
+        margin: 0;
+    }
+    .form-sent-notification{
+        position: relative;
+    bottom: 150px; 
+    font-size: 20px;
+    }
+    .btn-close-modal {
+        position: relative;
+        bottom: 250px; 
+    }
+    label {
+    margin: 0; 
+    font-size: 16px;
+    }
+    .text-label {
+        font-size: 16px;
+    }
+    .topnav.responsive a.icon {
+        color: Black;
+    }
 } 
 @keyframes modalopen {
   from {
